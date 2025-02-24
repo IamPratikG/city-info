@@ -1,23 +1,17 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import CityList from "./pages/CityList";
 
 function App() {
-  const [cityData, setCityData] = useState("");
-
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.text())
-      .then((data) => {
-        setCityData(data);
-      });
-  }, []);
-
   return (
-    <>
-      <div>
-        <h1>{cityData}</h1>
-      </div>
-    </>
+    <div className="app">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cities" element={<CityList />} />
+      </Routes>
+    </div>
   );
 }
 

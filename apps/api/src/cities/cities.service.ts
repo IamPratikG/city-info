@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { City } from './city.interface';
 import * as citiesData from '../data/cities.json';
 
@@ -15,34 +15,14 @@ export class CitiesService {
     return this.cities;
   }
 
-  findOne(name: string): City {
-    const city = this.cities.find(
-      (city) => city.name.toLowerCase() === name.toLowerCase(),
+  search(term: string): City[] {
+    const lowercaseTerm = term.toLowerCase();
+    return this.cities.filter(
+      (city) =>
+        city.name.toLowerCase().includes(lowercaseTerm) ||
+        city.name_native.toLowerCase().includes(lowercaseTerm) ||
+        city.country.toLowerCase().includes(lowercaseTerm) ||
+        city.continent.toLowerCase().includes(lowercaseTerm),
     );
-    if (!city) {
-      throw new NotFoundException(`City with name ${name} not found`);
-    }
-    return city;
-  }
-
-  update(name: string, updatedCity: Partial<City>): City {
-    const cityIndex = this.cities.findIndex(
-      (city) => city.name.toLowerCase() === name.toLowerCase(),
-    );
-    if (cityIndex === -1) {
-      throw new NotFoundException(`City with name ${name} not found`);
-    }
-    this.cities[cityIndex] = { ...this.cities[cityIndex], ...updatedCity };
-    return this.cities[cityIndex];
-  }
-
-  remove(name: string): void {
-    const cityIndex = this.cities.findIndex(
-      (city) => city.name.toLowerCase() === name.toLowerCase(),
-    );
-    if (cityIndex === -1) {
-      throw new NotFoundException(`City with name ${name} not found`);
-    }
-    this.cities.splice(cityIndex, 1);
   }
 }
