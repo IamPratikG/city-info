@@ -1,0 +1,87 @@
+.city-details-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 2rem;
+}
+
+.city-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.city-title h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.city-title .native-name {
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+}
+
+.city-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.city-main-info {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 2rem;
+}
+
+.info-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 10px;
+  flex: 1;
+}
+
+.info-card h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.city-landmarks,
+.city-description {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.city-landmarks h2,
+.city-description h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.city-landmarks ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.city-landmarks li {
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.city-details-error {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .city-content {
+    grid-template-columns: 1fr;
+  }
+
+  .city-main-info {
+    flex-direction: column;
+  }
+}

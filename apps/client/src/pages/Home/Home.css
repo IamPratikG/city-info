@@ -1,0 +1,14 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.welcome-text {
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 0.5rem;
+  font-size: 1.5em;
+  color: var(--text-color-2);
+}
