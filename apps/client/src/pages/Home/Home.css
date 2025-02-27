@@ -2,13 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: 0.5rem;
+  height: calc(100vh - 60px); /* Adjust 60px to match your header height */
+  overflow: hidden;
 }
 
 .welcome-text {
   text-align: center;
   max-width: 600px;
-  margin-bottom: 0.5rem;
-  font-size: 1.5em;
+  margin-bottom: 0.3rem;
+  font-size: 1.2em;
   color: var(--text-color-2);
 }

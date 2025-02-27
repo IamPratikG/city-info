@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchCities } from "../../store/citiesSlice";
 import SearchBox from "../../components/SearchBox/SearchBox";
+import MapComponent from "../../components/Map/Map";
 import "./Home.css";
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
         Ready to get insights for your travels? Let's get started!
       </h2>
       <SearchBox />
+      <MapComponent />
     </div>
   );
 };
