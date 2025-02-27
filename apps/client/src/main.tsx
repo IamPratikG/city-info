@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import "./styles/index.css";
 import { store } from "./store/store.ts";
-import ErrorBoundary from "./components/ErrorBoundary.tsx";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

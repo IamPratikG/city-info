@@ -1,11 +1,14 @@
 import React, { ErrorInfo, ReactNode } from "react";
+import "./ErrorBoundary.css";
 
 interface ErrorBoundaryState {
+  error?: Error;
   hasError: boolean;
 }
 
 interface ErrorBoundaryProps {
   children: ReactNode;
+  fallbackMessage?: string;
 }
 
 class ErrorBoundary extends React.Component<
@@ -17,8 +20,8 @@ class ErrorBoundary extends React.Component<
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(_: Error): ErrorBoundaryState {
-    return { hasError: true };
+  static getDerivedStateFromError(e: Error): ErrorBoundaryState {
+    return { error: e, hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -27,7 +30,15 @@ class ErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return (
+        <div className="error-boundary">
+          <h1>{this.props.fallbackMessage || "Something went wrong."}</h1>
+          <p>
+            Please try refreshing the page or contact support if the problem
+            persists.
+          </p>
+        </div>
+      );
     }
 
     return this.props.children;
