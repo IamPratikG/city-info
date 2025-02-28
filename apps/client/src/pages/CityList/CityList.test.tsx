@@ -2,6 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import CityList from "./CityList";
 import * as reactRedux from "react-redux";
+import { RootState } from "../../store/store";
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
@@ -20,15 +21,17 @@ describe("CityList Page", () => {
   });
 
   it("renders city list page", () => {
-    jest.spyOn(reactRedux, "useSelector").mockImplementation((selector) =>
-      selector({
-        cities: {
-          cities: mockCities,
-          status: "succeeded",
-          error: null,
-        },
-      })
-    );
+    jest
+      .spyOn(reactRedux, "useSelector")
+      .mockImplementation((selector: (state: RootState) => unknown) =>
+        selector({
+          cities: {
+            cities: mockCities,
+            status: "succeeded",
+            error: null,
+          },
+        } as RootState)
+      );
     render(
       <BrowserRouter>
         <CityList />
@@ -38,15 +41,17 @@ describe("CityList Page", () => {
   });
 
   it("displays list of cities", () => {
-    jest.spyOn(reactRedux, "useSelector").mockImplementation((selector) =>
-      selector({
-        cities: {
-          cities: mockCities,
-          status: "succeeded",
-          error: null,
-        },
-      })
-    );
+    jest
+      .spyOn(reactRedux, "useSelector")
+      .mockImplementation((selector: (state: RootState) => unknown) =>
+        selector({
+          cities: {
+            cities: mockCities,
+            status: "succeeded",
+            error: null,
+          },
+        } as RootState)
+      );
     render(
       <BrowserRouter>
         <CityList />
@@ -59,15 +64,19 @@ describe("CityList Page", () => {
   });
 
   it("displays error state", () => {
-    jest.spyOn(reactRedux, "useSelector").mockImplementation((selector) =>
-      selector({
-        cities: {
-          cities: [],
-          status: "failed",
-          error: "Failed to fetch cities",
-        },
-      })
-    );
+    jest
+      .spyOn(reactRedux, "useSelector")
+      .mockImplementation((selector: (state: RootState) => unknown) =>
+        selector({
+          cities: {
+            cities: [],
+            status: "failed",
+            error: "Failed to fetch cities",
+            searchResults: [],
+          },
+        } as RootState)
+      );
+
     render(
       <BrowserRouter>
         <CityList />
@@ -79,15 +88,19 @@ describe("CityList Page", () => {
   });
 
   it("displays message when no cities are found", () => {
-    jest.spyOn(reactRedux, "useSelector").mockImplementation((selector) =>
-      selector({
-        cities: {
-          cities: [],
-          status: "succeeded",
-          error: null,
-        },
-      })
-    );
+    jest
+      .spyOn(reactRedux, "useSelector")
+      .mockImplementation((selector: (state: RootState) => unknown) =>
+        selector({
+          cities: {
+            cities: [],
+            status: "succeeded",
+            error: null,
+            searchResults: [],
+          },
+        } as RootState)
+      );
+
     render(
       <BrowserRouter>
         <CityList />
@@ -97,15 +110,18 @@ describe("CityList Page", () => {
   });
 
   it("displays loading state", () => {
-    jest.spyOn(reactRedux, "useSelector").mockImplementation((selector) =>
-      selector({
-        cities: {
-          cities: [],
-          status: "loading",
-          error: null,
-        },
-      })
-    );
+    jest
+      .spyOn(reactRedux, "useSelector")
+      .mockImplementation((selector: (state: RootState) => unknown) =>
+        selector({
+          cities: {
+            cities: [],
+            status: "loading",
+            error: null,
+            searchResults: [],
+          },
+        } as RootState)
+      );
     render(
       <BrowserRouter>
         <CityList />
