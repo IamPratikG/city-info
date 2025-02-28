@@ -21,9 +21,12 @@
     "turbo": "^2.4.2"
   },
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --parallel",
+    "dev:api": "cd apps/api && nest start --watch",
+    "dev:client": "cd apps/client && vite",
     "build": "turbo run build",
     "start": "node apps/api/dist/main",
+    "lint": "eslint . --ext .js,.ts,.tsx --fix",
     "test": "jest",
     "test:client": "jest apps/client/src",
     "test:api": "jest apps/api/src --coverage",

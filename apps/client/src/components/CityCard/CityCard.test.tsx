@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import CityCard from "./CityCard";
 
-const madridCity = {
+const sampleCity = {
   name: "Madrid",
   name_native: "Madrid",
   country: "Spain",
@@ -15,11 +15,24 @@ const madridCity = {
   landmarks: ["Royal Palace", "Plaza Mayor", "Plaza de Cibeles"],
 };
 
-test("renders city name", () => {
-  render(
-    <BrowserRouter>
-      <CityCard city={madridCity} />
-    </BrowserRouter>
-  );
-  expect(screen.getByRole("heading", { name: /Madrid/i })).toBeInTheDocument();
+describe("CityCard Component", () => {
+  test("renders city name", () => {
+    render(
+      <BrowserRouter>
+        <CityCard city={sampleCity} />
+      </BrowserRouter>
+    );
+    expect(
+      screen.getByRole("heading", { name: /Madrid/i })
+    ).toBeInTheDocument();
+  });
+
+  test("renders city country", () => {
+    render(
+      <BrowserRouter>
+        <CityCard city={sampleCity} />
+      </BrowserRouter>
+    );
+    expect(screen.getByText(/Spain/i)).toBeInTheDocument();
+  });
 });
